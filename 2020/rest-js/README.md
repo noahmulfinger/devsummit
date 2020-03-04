@@ -1,11 +1,12 @@
 <!-- .slide: data-background-size="cover" style="padding-left: 80px" data-background="../../template/img/2020/devsummit/bg-1.png" -->
 
-<h1 style="text-align: left; font-size: 1.75em;">Node.js and browser applications with ArcGIS REST JS</h1>
-<p style="text-align: left; font-size: 1em;">Allison Davis, Noah Mulfinger</p>
-<h3 style="text-align: left; font-size: 1em;">
-  
-</h3>
-<!-- <p style="font-size: 1e÷m;">slides: <a href="#"><code>@@TODO ADD LINK</code></a> -->
+<h1 style="text-align: left; font-size: 80px; ">Node.js and browser applications with ArcGIS REST JS</h1>
+<p style="text-align: left; font-size: 30px;">Allison Davis <a href="https://github.com/araedavis">@araedavis</a></p>
+<p style="text-align: left; font-size: 30px;">Noah Mulfinger <a href="https://github.com/noahmulfinger">@noahmulfinger</a></p>
+<p style="text-align: left; font-size: 30px;">slides: <a href="http://bit.ly/abc123"><code>TODO ADD URL</code></a></p>
+
+<!-- Add these rows to push your text up so it is not interfering with the event name. Test on your actual projector! -->
+<p>&nbsp;</p> 
 
 ---
 
@@ -114,7 +115,7 @@ fetch(url, {
 
 <!-- .slide: data-background="../../template/img/2020/devsummit/bg-2.png" -->
 
-# Even more complexity
+## Even more complexity
 
 - What are all the error codes?
 - How do you handle auth?
@@ -594,6 +595,12 @@ you get the idea.
 
 <aside class="notes">
 </aside>
+
+---
+
+<!-- .slide: data-background="../../template/img/2020/devsummit/bg-3.png" -->
+
+<img src="../../template/img/esri-science-logo-white.png" class="plain" style="background: none;" />
 
 ---
 
