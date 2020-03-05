@@ -143,7 +143,7 @@ request(url)
   .then(response) // { firstName: "Daniel", description: "open source geodev" ... }
   .catch((error => {
     if(err.name === "ArcGISAuthError"){
-      // handle and auth error
+      // handle an auth error
     } else {
       // handle a regular error
     }
@@ -277,68 +277,125 @@ geocode("LAX", {
 
 <!-- .slide: data-background="../../template/img/2020/devsummit/bg-2.png" -->
 
-### < 2018 👵 collaborators
+### < 2020 👵 collaborators
 
-- https://developers.arcgis.com
-- https://hub.arcgis.com
+- [ArcGIS for Developers](https://developers.arcgis.com)
+- [ArcGIS Hub](https://hub.arcgis.com)
 - customers!
 
 ---
 
 <!-- .slide: data-background="../../template/img/2020/devsummit/bg-2.png" -->
 
-### >= 2018 👶 collaborators
+### >= 2020 👶 collaborators
 
+- ArcGIS Hub
+- ArcGIS for Developers
 - Storymaps
 - Web AppBuilder (next generation)
 - ArcGIS Urban
 - Professional Services
 - ArcGIS Solutions
-- Enterprise (via Hub)
+- ArcGIS Enterprise 
+- ArcGIS Analytics for IoT
 - Esri UK
 - Startups / Partners
-- ??
+- You?
 
 ---
 
 <!-- .slide: data-background="../../template/img/2020/devsummit/bg-2.png" -->
 
-### since the last talk (on [YouTube](https://www.youtube.com/watch?v=n0WtJPSprqc))...
+### since DevSummit 2019...
 
-- **5** new packages 📦!
-- **15** releases 🎉!
+🎉 rest-js v2.0.0! 🎉
+
+(plus 20 additional releases 🚀)
 
 ---
 
 <!-- .slide: data-background="../../template/img/2020/devsummit/bg-2.png" -->
 
-## 👵 packages 📦! CHANGE: CONDENSE THIS SLIDE AND NEXT ONE
+## packages 📦!
 
-- `request` / ~~2~~ 2.4 kb
-- `auth` / ~~2.5~~ 3 kb
-- `feature-service` / ~~500~~ 1.1 kb
-- `items` / ~~1~~ 1.1 kb
-- `groups` / ~~750~~ 780 b
-- `geocoder` / ~~1 kb~~ 990 b
+- `request`
+- `auth`
+- `portal`
+- `feature-layer`
+- `service-admin`
+- `geocoding`
+- `routing`
 
 <aside class="notes">
-  compact (on purpose and because they are wips)
+  Took package sizes out for now, although we can always add them back in later? 
 </aside>
 
 ---
 
 <!-- .slide: data-background="../../template/img/2020/devsummit/bg-2.png" -->
 
-## 👶 packages 📦!
+## What's new in v2+ 
 
-- `feature-service-admin` / 680 b
-- `sharing` / 1.2 kb
-- `users` / 690 b
-- `routing` / 590 b
-- `common` / 240 b
+### Parameters and Query Improvements
+- [SearchQueryBuilder](https://esri.github.io/arcgis-rest-js/api/portal/SearchQueryBuilder/) 
+
+- Improved [paging](https://esri.github.io/arcgis-rest-js/api/portal/searchItems/#nextPage)
+
+- Reusing parameters with `setDefaultRequestOptions()` and `withOptions()`
 
 <aside class="notes">
-  5 new packages
+
+</aside>
+
+---
+
+<!-- .slide: data-background="../../template/img/2020/devsummit/bg-2.png" -->
+
+## What's new in v2+, continued
+
+### One portal package to rule them all: 
+
+```bash
+// 1.x
+npm install @esri/arcgis-rest-items &&
+@esri/arcgis-rest-users &&
+@esri/arcgis-rest-groups &&
+@esri/arcgis-rest-sharing
+
+// 2.x
+npm install @esri/arcgis-rest-portal
+
+```
+
+Minor renaming and reorganization of some methods: check out the [release notes](https://esri.github.io/arcgis-rest-js/guides/whats-new-v2-0/) for the full list
+
+<aside class="notes">
+
+</aside>
+
+---
+
+<!-- .slide: data-background="../../template/img/2020/devsummit/bg-2.png" -->
+
+## What's new in v2+, continued
+
+### Packages install typings automatically 
+
+```typescript
+// 1.x
+import { IPoint } from "@esri/arcgis-rest-common-types";
+import { reverseGeocode } from "@esri/arcgis-rest-geocoder";
+
+reverseGeocode({ x: 34, y: -118} as IPoint);
+
+// 2.x
+import { IPoint, reverseGeocode } from "@esri/arcgis-rest-geocoding";
+
+reverseGeocode({ x: 34, y: -118} as IPoint);
+```
+
+<aside class="notes">
+
 </aside>
 
 ---
@@ -506,15 +563,6 @@ request(url, { authentication }).then(response => {
 
 <!-- .slide: data-background="../../template/img/2020/devsummit/bg-4.png" -->
 
-## lets make this [Observable](https://beta.observablehq.com/@jgravois/introduction-to-esri-arcgis-rest-js)
-
-<aside class="notes">
-</aside>
-
----
-
-<!-- .slide: data-background="../../template/img/2020/devsummit/bg-4.png" -->
-
 ## Demo
 
 ### [CDN](../hub-for-devs/bikelanes?appid=172c2e7c09e2452f9819cff6cf69de32)
@@ -585,13 +633,21 @@ you get the idea.
 
 <!-- .slide: data-background="../../template/img/2020/devsummit/bg-2.png" -->
 
-### What's next? CHANGE
+### What's next? UPDATE FOR 2020
 
-- param [builders](https://github.com/Esri/arcgis-rest-js/issues/384)?
-- more hooks to modify fetch behavior
-- more [decorated responses](https://github.com/Esri/arcgis-rest-js/issues/371)
-- [`v2.0.0`](https://github.com/Esri/arcgis-rest-js/issues/137)?
-- ??
+
+<aside class="notes">
+</aside>
+
+---
+
+<!-- .slide: data-background="../../template/img/2020/devsummit/bg-2.png" -->
+
+### Resources
+
+- [GitHub repo](https://github.com/Esri/arcgis-rest-js)
+- [Docs site](https://esri.github.io/)
+- [rest-js demo at Observables](https://beta.observablehq.com/@jgravois/introduction-to-esri-arcgis-rest-js)
 
 <aside class="notes">
 </aside>
