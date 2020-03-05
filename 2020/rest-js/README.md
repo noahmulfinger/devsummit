@@ -20,17 +20,33 @@
 1. 💯- Common Patterns
 1. 🤹‍- Demos/code (to learn how it works)
 
+<aside class="notes">
+
+Introduction/What is ArcGIS REST JS? Why? (Allison) 8 min
+Who is using it? For what? (Allison) 2 min
+Packages (Noah) 2 min
+Common Patterns (Noah) 5 min
+What's new in 2020? (Noah) 5 min
+Auth/CDN demo (Allison) 5 min
+React demo (Allison) 5 min
+JS API integration demo (Noah) 5 min
+node cli demo (Noah) 5 min
+What's next, resources and Wrap-up 3 min (Allison)
+Questions 10 min
+</aside>
+
 ---
 
 <!-- .slide: data-background="../../template/img/2020/devsummit/bg-2.png" -->
 
-### Open Source On GitHub
+### Open Source on GitHub
 
 Code 🎛 [github.com/Esri/arcgis-rest-js](https://github.com/Esri/arcgis-rest-js)
 
 Doc 📚 [esri.github.io/arcgis-rest-js](https://esri.github.io/arcgis-rest-js)
 
 <aside class="notes">
+(Allison)
   * its an open source thing
   *  API reference is generated from comments within the code
   * Guides
@@ -46,6 +62,10 @@ Doc 📚 [esri.github.io/arcgis-rest-js](https://esri.github.io/arcgis-rest-js)
 to ArcGIS Online and Enterprise
 
 from modern browsers and Node.js.
+
+<aside class="notes">
+(Allison)
+</aside>
 
 ---
 
@@ -73,6 +93,7 @@ xhr.send(null);
 ```
 
 <aside class="notes">
+(Allison)
   this is tedious (and old)
 </aside>
 
@@ -107,6 +128,7 @@ fetch(url, {
 ```
 
 <aside class="notes">
+  Allison
   the comments show the work the library is doing under the hood.
   this is still tedious
 </aside>
@@ -123,6 +145,10 @@ fetch(url, {
 - Proper encoding for objects?
 - How do you manage tokens for federated servers?
 - Refreshing authentication when necessary?
+
+<aside class="notes">
+Allison
+</aside>
 
 ---
 
@@ -151,6 +177,7 @@ request(url)
 ```
 
 <aside class="notes">
+(Allison)
   could you do this without a dependency, yes!
   but why would you?
 </aside>
@@ -171,7 +198,7 @@ request(url)
 - ~~clientside analysis~~
 
 <aside class="notes">
-
+(Allison)
 </aside>
 
 ---
@@ -200,6 +227,7 @@ request(url, {
 ```
 
 <aside class="notes">
+Allison
   IRequestOptions give you more control over the request
   authentication helps you generate tokens when you cant make an anonymous request
   a custom Fetch implementation can be passed in too
@@ -227,6 +255,7 @@ geocode("LAX", {
 ```
 
 <aside class="notes">
+  Allison
   you dont have to wait for us to wrap every ArcGIS Online call
 </aside>
 
@@ -243,6 +272,7 @@ geocode("LAX", {
 - align with JS ecosystem
 
 <aside class="notes">
+Allison
  originally because PDX was using Angular and Hub was using Ember
 </aside>
 
@@ -257,6 +287,7 @@ geocode("LAX", {
 - scratching our own itch
 
 <aside class="notes">
+Allison
 </aside>
 
 ---
@@ -269,6 +300,7 @@ geocode("LAX", {
 - **much different** than the ArcGIS API for JavaScript
 
 <aside class="notes">
+Allison
   thin wrapper, web centric
   pairs well with other open source libraries
 </aside>
@@ -277,17 +309,21 @@ geocode("LAX", {
 
 <!-- .slide: data-background="../../template/img/2020/devsummit/bg-2.png" -->
 
-### < 2020 👵 collaborators
+### In the beginning...
 
 - [ArcGIS for Developers](https://developers.arcgis.com)
 - [ArcGIS Hub](https://hub.arcgis.com)
 - customers!
 
+<aside class="notes">
+Allison
+</aside>
+
 ---
 
 <!-- .slide: data-background="../../template/img/2020/devsummit/bg-2.png" -->
 
-### >= 2020 👶 collaborators
+### As of 2020
 
 - ArcGIS Hub
 - ArcGIS for Developers
@@ -300,17 +336,12 @@ geocode("LAX", {
 - ArcGIS Analytics for IoT
 - Esri UK
 - Startups / Partners
+- Customers
 - You?
 
----
-
-<!-- .slide: data-background="../../template/img/2020/devsummit/bg-2.png" -->
-
-### since DevSummit 2019...
-
-🎉 rest-js v2.0.0! 🎉
-
-(plus 20 additional releases 🚀)
+<aside class="notes">
+Allison
+</aside>
 
 ---
 
@@ -327,7 +358,22 @@ geocode("LAX", {
 - `routing`
 
 <aside class="notes">
-  Took package sizes out for now, although we can always add them back in later? 
+Noah
+Took package sizes out for now, although we can always add them back in later? 
+</aside>
+
+---
+
+<!-- .slide: data-background="../../template/img/2020/devsummit/bg-2.png" -->
+
+### since DevSummit 2019...
+
+🎉 rest-js v2.0.0! 🎉
+
+(plus 20 additional releases 🚀)
+
+<aside class="notes">
+Noah
 </aside>
 
 ---
@@ -344,7 +390,7 @@ geocode("LAX", {
 - Reusing parameters with `setDefaultRequestOptions()` and `withOptions()`
 
 <aside class="notes">
-
+Noah
 </aside>
 
 ---
@@ -370,7 +416,7 @@ npm install @esri/arcgis-rest-portal
 Minor renaming and reorganization of some methods: check out the [release notes](https://esri.github.io/arcgis-rest-js/guides/whats-new-v2-0/) for the full list
 
 <aside class="notes">
-
+Noah
 </aside>
 
 ---
@@ -395,7 +441,7 @@ reverseGeocode({ x: 34, y: -118} as IPoint);
 ```
 
 <aside class="notes">
-
+Noah
 </aside>
 
 ---
@@ -422,6 +468,7 @@ getLayer(url, {
 .
 
 <aside class="notes">
+Noah
 </aside>
 
 ---
@@ -458,6 +505,7 @@ deleteFeatures({
 </div>
 only one parameter is exposed and we [_extend_](https://esri.github.io/arcgis-rest-js/api/feature-service/deleteFeatures/) `IRequestOptions`
 <aside class="notes">
+Noah
 show that this method expects ISetAccessRequestOptions
 this gives a higher level abstraction than just { params }
 admit that required parameters are obscured by optional (and inherited ones)
@@ -483,6 +531,10 @@ setItemAccess({
 
 [`ISetItemAccessOptions`](https://esri.github.io/arcgis-rest-js/api/sharing/setItemAccess/)
 
+<aside class="notes">
+Noah
+</aside>
+
 ---
 
 <!-- .slide: data-background="../../template/img/2020/devsummit/bg-2.png" -->
@@ -491,6 +543,10 @@ The DX is simple, even when the underlying logic is [complicated](https://github
 
 - we ensure the response is \_deterministic
 - we figure out _which_ url to call (based on role)
+
+<aside class="notes">
+Noah
+</aside>
 
 ---
 
@@ -513,6 +569,7 @@ const enterpriseAuth = new UserSession({
 ```
 
 <aside class="notes">
+Noah
   this in and of itself doesnt fetch a token
   similar to JSAPI IdentityManager
     * DOESNT juggle multiple portals
@@ -540,6 +597,7 @@ request(url, { authentication }).then(response => {
 and whether or not a server is trusted (federated)
 
 <aside class="notes">
+Noah
   the session keeps track of the expiration of tokens and trusted servers
 </aside>
 
@@ -557,6 +615,7 @@ request(url, { authentication }).then(response => {
 ```
 
 <aside class="notes">
+Noah
 </aside>
 
 ---
@@ -565,23 +624,14 @@ request(url, { authentication }).then(response => {
 
 ## Demo
 
-### [CDN](../hub-for-devs/bikelanes?appid=172c2e7c09e2452f9819cff6cf69de32)
+### [OAuth in Browser]()
+
+- Auth package
+- uses rest-js via CDN
 
 <aside class="notes">
-</aside>
-
----
-
-<!-- .slide: data-background="../../template/img/2020/devsummit/bg-4.png" -->
-
-## Demo
-
-### [Node.js](https://github.com/Esri/arcgis-rest-js/tree/master/demos/node-cli-item-management/)
-
-<aside class="notes">
-  OAuth 2.0
-  demo (and API functionality) came from a user
-  admit that we should be hosting live demos but for now you have to run them yourself.
+Allison
+@TODO Look at existing demo on GitHub (OAuth demo), make sure it covers what we want to cover
 </aside>
 
 ---
@@ -593,6 +643,8 @@ request(url, { authentication }).then(response => {
 ### [React Component](https://github.com/oppoudel/react-geocoder)
 
 <aside class="notes">
+Allison
+@TODO create updated React demo with v2.0; TypeScript
   geocoding
 </aside>
 
@@ -602,9 +654,11 @@ request(url, { authentication }).then(response => {
 
 ## Demo
 
-### [Sapper](https://github.com/Esri/arcgis-rest-js/tree/master/demos/feature-collection-manager-sapper)
+### [JS API Integration]()
 
 <aside class="notes">
+Noah
+@TODO create JS API integration demo
 </aside>
 
 ---
@@ -613,43 +667,48 @@ request(url, { authentication }).then(response => {
 
 ## Demo
 
-### [Web Component](https://github.com/esridc/hub-components)
+### [Node.js](https://github.com/Esri/arcgis-rest-js/tree/master/demos/node-cli-item-management/)
 
 <aside class="notes">
+  Noah
+
+  demo (and API functionality) came from a user
+  admit that we should be hosting live demos but for now you have to run them yourself.
 </aside>
 
 ---
 
-<!-- .slide: data-background="../../template/img/2020/devsummit/bg-4.png" -->
 
-## [Lamda Functions](https://medium.com/@adamjpfister/know-your-apis-6dc6ea3d084c)
 
-you get the idea.
+<!-- .slide: data-background="../../template/img/2020/devsummit/bg-3.png" -->
+
+### What's next? 
+
 
 <aside class="notes">
+Allison
+@TODO UPDATE FOR 2020
 </aside>
 
 ---
 
-<!-- .slide: data-background="../../template/img/2020/devsummit/bg-2.png" -->
+<!-- .slide: data-background="../../template/img/2020/devsummit/bg-3.png" -->
 
-### What's next? UPDATE FOR 2020
-
-
-<aside class="notes">
-</aside>
-
----
-
-<!-- .slide: data-background="../../template/img/2020/devsummit/bg-2.png" -->
-
-### Resources
+### Resources 📚
 
 - [GitHub repo](https://github.com/Esri/arcgis-rest-js)
 - [Docs site](https://esri.github.io/)
 - [rest-js demo at Observables](https://beta.observablehq.com/@jgravois/introduction-to-esri-arcgis-rest-js)
+<p>&nbsp;</p> 
+
+### More Demos 💻
+
+- [Sapper](https://github.com/Esri/arcgis-rest-js/tree/master/demos/feature-collection-manager-sapper)
+- [Web Components with Stencil](https://github.com/esridc/hub-components)
+- [Lamda Functions](https://medium.com/@adamjpfister/know-your-apis-6dc6ea3d084c)
 
 <aside class="notes">
+Allison
 </aside>
 
 ---
