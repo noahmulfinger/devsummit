@@ -359,7 +359,7 @@ Allison
 - `geocoding` 1 kB
 - `routing` 642 B
 
-<aside class="notes">
+<aside class="notes" data-markdown>
 Noah
 - set of packages we have so far
 - wrappers on top of request package
@@ -377,7 +377,7 @@ Noah
 
 (plus 20 additional releases 🚀)
 
-<aside class="notes">
+<aside class="notes" data-markdown>
 Noah
 - had a major release middle of last year
 - lots of updates throughout the year, bug fixes and feature improvements
@@ -397,7 +397,7 @@ Noah
 
 - Package and type reorganization
 
-<aside class="notes">
+<aside class="notes" data-markdown>
 Noah
 - Added a way to build search queries, easier than appending to a long string
 - easy paging, making it easier to get the next page of results
@@ -423,7 +423,7 @@ npm install @esri/arcgis-rest-portal
 
 ```
 
-<aside class="notes">
+<aside class="notes" data-markdown>
 Noah
 - reduce the number of packages
 - overzealous in splitting up the functionality
@@ -457,7 +457,7 @@ const q = new SearchQueryBuilder()
   .endGroup();
 ```
 
-<aside class="notes">
+<aside class="notes" data-markdown>
 Noah
 - searchquerybuilder allows makes queries simpler, less error prone
 - a bit more code, but really useful for complex queries
@@ -485,7 +485,7 @@ reverseGeocode({ x: 34, y: -118 } as IPoint);
 
 Check out the [release notes](https://esri.github.io/arcgis-rest-js/guides/whats-new-v2-0/) for the full list
 
-<aside class="notes">
+<aside class="notes" data-markdown>
 Noah
 - final 2.x update I'll mention
 - used to need a separate package for typescript types
@@ -520,7 +520,7 @@ searchItems({
 
 you can pass in it in directly.
 
-<aside class="notes">
+<aside class="notes" data-markdown>
 Noah
 - When a single piece of info is required, you can pass in the info directly
 - If you want to pass in additional properties, you pass in an object that extends IRequestOptions
@@ -555,7 +555,7 @@ Noah
 
 only an object can be passed in, [_extends_](https://esri.github.io/arcgis-rest-js/api/feature-service/deleteFeatures/) `IRequestOptions`
 
-<aside class="notes">
+<aside class="notes" data-markdown>
 Noah
 - with multiple required params, an object must be passed in 
 - extends IRequestOptions as mentioned earlier
@@ -582,7 +582,7 @@ setItemAccess({
 
 [`ISetItemAccessOptions`](https://esri.github.io/arcgis-rest-js/api/portal/setItemAccess/)
 
-<aside class="notes">
+<aside class="notes" data-markdown>
 Noah
 - reduce overhead of constructing url for an item
 - only the bare minimum required info is needed.
@@ -597,7 +597,7 @@ Simplified developer experience, even when the underlying logic is [complicated]
 - we ensure the response is \_deterministic
 - we figure out _which_ url to call (based on role)
 
-<aside class="notes">
+<aside class="notes" data-markdown>
 Noah
 - overall simplifying the developer experience of interacting with the REST API
 - do a quick view of the changeGroupSharing to show how complicated it is
@@ -625,7 +625,7 @@ const enterpriseAuth = new UserSession({
 });
 ```
 
-<aside class="notes">
+<aside class="notes" data-markdown>
 Noah
 - UserSession is the most common way to handle authentication
 - this in and of itself doesnt fetch a token, just sets up config needed for making authenticated requests
@@ -654,7 +654,7 @@ request(url, { authentication }).then(response => {
 
 and whether or not a server is trusted (federated)
 
-<aside class="notes">
+<aside class="notes" data-markdown>
 Noah
 - the UserSession keeps track of the expiration of tokens and trusted servers
 - pass around the authentication object
@@ -699,7 +699,7 @@ Allison
 
 ### [JS API Integration](https://angular-js-api-integration-demo.stackblitz.io/)
 
-<aside class="notes">
+<aside class="notes" data-markdown>
 Noah
 @TODO create JS API integration demo
 </aside>
@@ -757,7 +757,3 @@ Allison
 <!-- .slide: data-background="../../template/img/2020/devsummit/bg-3.png" -->
 
 <img src="../../template/img/esri-science-logo-white.png" class="plain" style="background: none;" />
-
----
-
-<!-- .slide: data-background="../../template/img/2020/devsummit/bg-rating.png" -->
