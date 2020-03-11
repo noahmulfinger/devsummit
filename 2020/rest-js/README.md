@@ -6,7 +6,7 @@
 <p style="text-align: left; font-size: 30px;">slides: <a href="http://bit.ly/abc123"><code>TODO ADD URL</code></a></p>
 
 <!-- Add these rows to push your text up so it is not interfering with the event name. Test on your actual projector! -->
-<p>&nbsp;</p> 
+<p>&nbsp;</p>
 
 ---
 
@@ -267,7 +267,8 @@ import { geocode } from "@esri/arcgis-rest-geocoding";
 geocode("LAX").then(response); // { ... candidates: [] }
 
 // IRequestOptions is still available
-geocode("LAX", {
+geocode({
+  singleLine: "LAX",
   params: {
     forStorage: true
   },
@@ -368,7 +369,7 @@ Allison
 - ArcGIS Urban
 - Professional Services
 - ArcGIS Solutions
-- ArcGIS Enterprise 
+- ArcGIS Enterprise
 - ArcGIS Analytics for IoT
 - Esri UK
 - Startups / Partners
@@ -388,17 +389,20 @@ Allison
 
 ## packages 📦!
 
-- `request`
-- `auth`
-- `portal`
-- `feature-layer`
-- `service-admin`
-- `geocoding`
-- `routing`
+- `request` 2.8 kB
+- `auth` 3.6 kB
+- `portal` 5.1 kB
+- `feature-layer` 1.3 kB
+- `service-admin` 746 B
+- `geocoding` 1 kB
+- `routing` 642 B
 
-<aside class="notes">
+<aside class="notes" data-markdown>
 Noah
-Took package sizes out for now, although we can always add them back in later? 
+- set of packages we have so far
+- wrappers on top of request package
+- all very lightweight
+- if you're bundling them they would be tree-shakeable, only including the functions you actually need
 </aside>
 
 ---
@@ -411,34 +415,39 @@ Took package sizes out for now, although we can always add them back in later?
 
 (plus 20 additional releases 🚀)
 
-<aside class="notes">
+<aside class="notes" data-markdown>
 Noah
+- had a major release middle of last year
+- lots of updates throughout the year, bug fixes and feature improvements
 </aside>
 
 ---
 
 <!-- .slide: data-background="../../template/img/2020/devsummit/bg-2.png" -->
 
-## What's new in v2+ 
+### What's new in v2+
 
-### Parameters and Query Improvements
-- [SearchQueryBuilder](https://esri.github.io/arcgis-rest-js/api/portal/SearchQueryBuilder/) 
+- [SearchQueryBuilder](https://esri.github.io/arcgis-rest-js/api/portal/SearchQueryBuilder/)
 
 - Improved [paging](https://esri.github.io/arcgis-rest-js/api/portal/searchItems/#nextPage)
 
-- Reusing parameters with `setDefaultRequestOptions()` and `withOptions()`
+- `setDefaultRequestOptions()` and `withOptions()`
 
-<aside class="notes">
+- Package and type reorganization
+
+<aside class="notes" data-markdown>
 Noah
+- Added a way to build search queries, easier than appending to a long string
+- easy paging, making it easier to get the next page of results
+- helper methods for reducing repetition of common request options
+- lot of reorganization of packages, types, and functions based on feedback and needs of contributors
 </aside>
 
 ---
 
 <!-- .slide: data-background="../../template/img/2020/devsummit/bg-2.png" -->
 
-## What's new in v2+, continued
-
-### One portal package to rule them all: 
+### One portal package to rule them all
 
 ```bash
 // 1.x
@@ -452,36 +461,81 @@ npm install @esri/arcgis-rest-portal
 
 ```
 
-Minor renaming and reorganization of some methods: check out the [release notes](https://esri.github.io/arcgis-rest-js/guides/whats-new-v2-0/) for the full list
-
-<aside class="notes">
+<aside class="notes" data-markdown>
 Noah
+- reduce the number of packages
+- overzealous in splitting up the functionality
+- shared functionality 
 </aside>
 
 ---
 
 <!-- .slide: data-background="../../template/img/2020/devsummit/bg-2.png" -->
 
-## What's new in v2+, continued
+### Building search queries
 
-### Packages install typings automatically 
+```js
+// 1.x
+const q =
+  "Trees AND owner: US Forest Service AND (type: 'Web Mapping Application' OR type: 'Mobile Application')";
+
+// 2.x
+const q = new SearchQueryBuilder()
+  .match("Trees")
+  .and()
+  .match("US Forest Service")
+  .in("owner")
+  .and()
+  .startGroup()
+  .match("Web Mapping Application")
+  .in("type")
+  .or()
+  .match("Mobile Application")
+  .in("type")
+  .endGroup();
+```
+
+<aside class="notes" data-markdown>
+Noah
+- searchquerybuilder allows makes queries simpler, less error prone
+- a bit more code, but really useful for complex queries
+- don't need to manually manage a string
+</aside>
+
+---
+
+<!-- .slide: data-background="../../template/img/2020/devsummit/bg-2.png" -->
+
+### Packages install types automatically
 
 ```typescript
 // 1.x
 import { IPoint } from "@esri/arcgis-rest-common-types";
 import { reverseGeocode } from "@esri/arcgis-rest-geocoder";
 
-reverseGeocode({ x: 34, y: -118} as IPoint);
+reverseGeocode({ x: 34, y: -118 } as IPoint);
 
 // 2.x
 import { IPoint, reverseGeocode } from "@esri/arcgis-rest-geocoding";
 
-reverseGeocode({ x: 34, y: -118} as IPoint);
+reverseGeocode({ x: 34, y: -118 } as IPoint);
 ```
 
-<aside class="notes">
+Check out the [release notes](https://esri.github.io/arcgis-rest-js/guides/whats-new-v2-0/) for the full list
+
+<aside class="notes" data-markdown>
 Noah
+- final 2.x update I'll mention
+- used to need a separate package for typescript types
+- now they are included automatically for you
+- For all info, see the release notes
 </aside>
+
+---
+
+<!-- .slide: data-background="../../template/img/2020/devsummit/bg-3.png" -->
+
+## Common Patterns
 
 ---
 
@@ -490,24 +544,24 @@ Noah
 when only **one** piece of information is required
 
 ```js
-import { getLayer } from "@esri/arcgis-rest-feature-service";
-
-const url = `http://services.arcgis.com/.../SF311/FeatureServer/0/deleteFeatures`;
-
-getLayer(url).then(response); // { name: "311", id: 0, ... }
-
+import { searchItems } from "@esri/arcgis-rest-portal";
+//
+searchItems('water')
+  .then(response) // { total: 355, etc... }
 // or
-getLayer(url, {
+searchItems({
+  query: "water",
   httpMethod: "GET",
-  authentication // etc.
+  authentication
 });
 ```
 
-[IRequestOptions](https://esri.github.io/arcgis-rest-js/api/feature-service/getLayer/) still plays second 🎻
-.
+you can pass in it in directly.
 
-<aside class="notes">
+<aside class="notes" data-markdown>
 Noah
+- When a single piece of info is required, you can pass in the info directly
+- If you want to pass in additional properties, you pass in an object that extends IRequestOptions
 </aside>
 
 ---
@@ -516,22 +570,17 @@ Noah
 
 ### if **more** than one piece of information is needed
 
-<div class="container">
-
-<div class="col">
-  <pre style="width: 500px; margin: 0 auto; box-shadow: none;"><code class="hljs js" style="height: 400px;">
-deleteFeatures({
-  url,
+<pre style="width: 50%; margin: 0 auto; box-shadow: none;">
+<code class="hljs js">deleteFeatures({
+  url: "https://server.arcgis.com/arcgis/rest/services/MyData/FeatureServer/0"
   objectIds: [ 123 ]
 })
   .then(response)
-    </code>
-    </pre>
-</div>
+</code>
+</pre>
 
-<div class="col">
-  <pre style="width: 500px; margin: 0 auto; box-shadow: none;"><code class="hljs json" style="height: 400px;">
-{
+<pre style="width: 50%; margin: 0 auto; box-shadow: none;">
+<code class="hljs json">{
   "deleteResults": [
     {
       "objectId": 123,
@@ -539,17 +588,18 @@ deleteFeatures({
     }
   ]
 }
-</code></pre>
-</div>
-</div>
-only one parameter is exposed and we [_extend_](https://esri.github.io/arcgis-rest-js/api/feature-service/deleteFeatures/) `IRequestOptions`
-<aside class="notes">
+</code>
+</pre>
+
+only an object can be passed in, [_extends_](https://esri.github.io/arcgis-rest-js/api/feature-service/deleteFeatures/) `IRequestOptions`
+
+<aside class="notes" data-markdown>
 Noah
-show that this method expects ISetAccessRequestOptions
-this gives a higher level abstraction than just { params }
-admit that required parameters are obscured by optional (and inherited ones)
-remind folks that the code snippet is good enough for most
-and that the structure is mostly for TypeScript consumers
+- with multiple required params, an object must be passed in 
+- extends IRequestOptions as mentioned earlier
+- go to deleteFeatures page on doc site and show options
+- mention `params` object for additional custom params
+  - goal is not to document the whole rest api, just common options
 </aside>
 
 ---
@@ -568,23 +618,29 @@ setItemAccess({
 }).then(response);
 ```
 
-[`ISetItemAccessOptions`](https://esri.github.io/arcgis-rest-js/api/sharing/setItemAccess/)
+[`ISetItemAccessOptions`](https://esri.github.io/arcgis-rest-js/api/portal/setItemAccess/)
 
-<aside class="notes">
+<aside class="notes" data-markdown>
 Noah
+- reduce overhead of constructing url for an item
+- only the bare minimum required info is needed.
 </aside>
 
 ---
 
 <!-- .slide: data-background="../../template/img/2020/devsummit/bg-2.png" -->
 
-The DX is simple, even when the underlying logic is [complicated](https://github.com/Esri/arcgis-rest-js/blob/master/packages/arcgis-rest-sharing/src/group-sharing.ts#L74-L161)
+Simplified developer experience, even when the underlying logic is [complicated](https://github.com/Esri/arcgis-rest-js/blob/master/packages/arcgis-rest-portal/src/sharing/group-sharing.ts#L76-L173)
 
 - we ensure the response is \_deterministic
 - we figure out _which_ url to call (based on role)
 
-<aside class="notes">
+<aside class="notes" data-markdown>
 Noah
+- overall simplifying the developer experience of interacting with the REST API
+- do a quick view of the changeGroupSharing to show how complicated it is
+- requirement of the hub team that often has to deal with sharing
+- 
 </aside>
 
 ---
@@ -607,15 +663,14 @@ const enterpriseAuth = new UserSession({
 });
 ```
 
-<aside class="notes">
+<aside class="notes" data-markdown>
 Noah
-  this in and of itself doesnt fetch a token
-  similar to JSAPI IdentityManager
-    * DOESNT juggle multiple portals
-    * doesnt present a UI to login when an anonymous request fails
-
-tokens arent fetched until its time to make a request
-
+- UserSession is the most common way to handle authentication
+- this in and of itself doesnt fetch a token, just sets up config needed for making authenticated requests
+- similar to JS API IdentityManager
+    - doesn't juggle multiple portals
+    - doesn't present a UI to login when an anonymous request fails
+- tokens arent fetched until its time to make a request
 </aside>
 
 ---
@@ -627,6 +682,8 @@ tokens arent fetched until its time to make a request
 ```js
 const url = `http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/`;
 
+const authentication = new UserSession({ username, password });
+
 request(url, { authentication }).then(response => {
   // the same token will be reused for the second request
   request(url, { authentication });
@@ -635,26 +692,11 @@ request(url, { authentication }).then(response => {
 
 and whether or not a server is trusted (federated)
 
-<aside class="notes">
+<aside class="notes" data-markdown>
 Noah
-  the session keeps track of the expiration of tokens and trusted servers
-</aside>
-
----
-
-<!-- .slide: data-background="../../template/img/2020/devsummit/bg-2.png" -->
-
-```js
-const url = `http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/`;
-
-request(url, { authentication }).then(response => {
-  // reuse the same token since it hasn't expired
-  request(url, { authentication });
-});
-```
-
-<aside class="notes">
-Noah
+- the UserSession keeps track of the expiration of tokens and trusted servers
+- pass around the authentication object
+- UserSession will handle getting new tokens if they get expired
 </aside>
 
 ---
@@ -728,9 +770,9 @@ Allison
 
 ## Demo
 
-### [JS API Integration]()
+### [JS API Integration](https://angular-js-api-integration-demo.stackblitz.io/)
 
-<aside class="notes">
+<aside class="notes" data-markdown>
 Noah
 @TODO create JS API integration demo
 </aside>
@@ -746,8 +788,9 @@ Noah
 <aside class="notes">
   Noah
 
-  demo (and API functionality) came from a user
-  admit that we should be hosting live demos but for now you have to run them yourself.
+demo (and API functionality) came from a user
+admit that we should be hosting live demos but for now you have to run them yourself.
+
 </aside>
 
 ---
