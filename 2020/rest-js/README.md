@@ -3,7 +3,7 @@
 <h1 style="text-align: left; font-size: 80px; ">Node.js and browser applications with ArcGIS REST JS</h1>
 <p style="text-align: left; font-size: 30px;">Allison Davis <a href="https://github.com/araedavis">@araedavis</a></p>
 <p style="text-align: left; font-size: 30px;">Noah Mulfinger <a href="https://github.com/noahmulfinger">@noahmulfinger</a></p>
-<p style="text-align: left; font-size: 30px;">slides: <a href="http://bit.ly/abc123"><code>TODO ADD URL</code></a></p>
+<p style="text-align: left; font-size: 30px;">slides: <a href="https://bit.ly/3aLDzaz">bit.ly/3aLDzaz</a></p>
 
 <!-- Add these rows to push your text up so it is not interfering with the event name. Test on your actual projector! -->
 <p>&nbsp;</p>
@@ -799,7 +799,7 @@ admit that we should be hosting live demos but for now you have to run them your
 
 ### Resources 📚
 
-- [Link to slides]()
+- [Link to slides](https://bit.ly/3aLDzaz)
 - [GitHub repo](https://github.com/Esri/arcgis-rest-js)
 - [Docs site](https://esri.github.io/)
 - [Demo at Observables](https://beta.observablehq.com/@jgravois/introduction-to-esri-arcgis-rest-js)
