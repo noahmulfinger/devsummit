@@ -20,19 +20,19 @@
 1. 💯- Common Patterns
 1. 🤹‍- Demos/code (to learn how it works)
 
-<aside class="notes">
+<aside class="notes" data-markdown>
 
-Introduction/What is ArcGIS REST JS? Why? (Allison) 8 min
-Who is using it? For what? (Allison) 2 min
-Packages (Noah) 2 min
-Common Patterns (Noah) 5 min
-What's new in 2020? (Noah) 5 min
-Auth/CDN demo (Allison) 5 min
-React demo (Allison) 5 min
-JS API integration demo (Noah) 5 min
-node cli demo (Noah) 5 min
-What's next, resources and Wrap-up 3 min (Allison)
-Questions 10 min
+* Introduction/What is ArcGIS REST JS? Why? (Allison) 8 min
+* Who is using it? For what? (Allison) 2 min
+* Packages (Noah) 2 min
+* Common Patterns (Noah) 5 min
+* What's new in 2020? (Noah) 5 min
+* Auth/CDN demo (Allison) 5 min
+* React demo (Allison) 5 min
+* JS API integration demo (Noah) 5 min
+* node cli demo (Noah) 5 min
+* Resources and Wrap-up 3 min (Allison)
+* Questions 10 min
 </aside>
 
 ---
@@ -45,12 +45,12 @@ Code 🎛 [github.com/Esri/arcgis-rest-js](https://github.com/Esri/arcgis-rest-j
 
 Doc 📚 [esri.github.io/arcgis-rest-js](https://esri.github.io/arcgis-rest-js)
 
-<aside class="notes">
+<aside class="notes" data-markdown>
 (Allison)
-  * its an open source thing
-  *  API reference is generated from comments within the code
-  * Guides
-  * pull requests (suggestions, improvements) welcome
+  * Both the rest-js codebase and docs are open source
+  *  API reference is generated from comments within the code using TypeDoc
+  * Guides and demos
+  * pull requests (suggestions, improvements) welcome and appreciated
 </aside>
 
 ---
@@ -63,8 +63,9 @@ to ArcGIS Online and Enterprise
 
 from modern browsers and Node.js.
 
-<aside class="notes">
+<aside class="notes" data-markdown>
 (Allison)
+We try to handle as many common use cases and as many idiosyncracies of the REST API as possible
 </aside>
 
 ---
@@ -92,9 +93,14 @@ xhr.open("GET", url, true);
 xhr.send(null);
 ```
 
-<aside class="notes">
+<aside class="notes" data-markdown>
 (Allison)
-  this is tedious (and old)
+  * url; tack on f=json so that we get our json format
+  * we wait for readyStateChange, and then if it's Done, we have response text 
+  * and then we have to figure out how we want to handle errors.
+
+  * not great...but doable
+  * this is what an http request looks like in a browser with no helper APIs
 </aside>
 
 ---
@@ -127,10 +133,14 @@ fetch(url, {
   });
 ```
 
-<aside class="notes">
+<aside class="notes" data-markdown>
   Allison
-  the comments show the work the library is doing under the hood.
-  this is still tedious
+
+  * url; set options including method and form encoded header, encode the f=json parameters
+  * we get a promise back and then can extract the json from the response object
+  * there's some error handing
+  * Does the same as the previous example with the Fetch API 
+  * better but still can be pretty cumbersome
 </aside>
 
 ---
@@ -148,6 +158,7 @@ fetch(url, {
 
 <aside class="notes">
 Allison
+
 </aside>
 
 ---
@@ -155,6 +166,11 @@ Allison
 <!-- .slide: data-background="../../template/img/2020/devsummit/bg-2.png" -->
 
 <p style="font-size: 400%;">💥</p>
+
+<aside class="notes" data-markdown>
+Allison
+Rest-js tries to handle as much of this as possible so your head doesn't explode
+</aside>
 
 ---
 
@@ -176,10 +192,9 @@ request(url)
   })
 ```
 
-<aside class="notes">
+<aside class="notes" data-markdown>
 (Allison)
-  could you do this without a dependency, yes!
-  but why would you?
+  does more in fewer lines of code 
 </aside>
 
 ---
@@ -197,8 +212,13 @@ request(url)
 - ~~display a map~~
 - ~~clientside analysis~~
 
-<aside class="notes">
+<aside class="notes" data-markdown>
 (Allison)
+* handles headers including requesting images or files 
+* try to separate out as many error types as possible
+* auth support including tokens for federated servers, refreshing when necessary
+
+* But we stop at the request level, we don't handle mapping, clientside analysis or the kinds of things you'd get by using the JS API
 </aside>
 
 ---
@@ -226,11 +246,12 @@ request(url, {
 });
 ```
 
-<aside class="notes">
+<aside class="notes" data-markdown>
 Allison
-  IRequestOptions give you more control over the request
-  authentication helps you generate tokens when you cant make an anonymous request
-  a custom Fetch implementation can be passed in too
+  * httpMethod defaults to POST
+  * IRequestOptions give you more control over the request
+  * authentication helps you generate tokens when you can't make an anonymous request
+  * a custom Fetch implementation can be passed in too
 </aside>
 
 ---
@@ -240,7 +261,7 @@ Allison
 the rest of the API builds on top of `request`
 
 ```js
-import { geocode } from "@esri/arcgis-rest-geocoder";
+import { geocode } from "@esri/arcgis-rest-geocoding";
 
 // assumes you want to use ArcGIS Online
 geocode("LAX").then(response); // { ... candidates: [] }
@@ -254,9 +275,10 @@ geocode("LAX", {
 });
 ```
 
-<aside class="notes">
+<aside class="notes" data-markdown>
   Allison
-  you dont have to wait for us to wrap every ArcGIS Online call
+  * Under the hood, geocoding just calls request
+  * But with nicer syntax 
 </aside>
 
 ---
@@ -271,9 +293,14 @@ geocode("LAX", {
 - shave down the sharp edges
 - align with JS ecosystem
 
-<aside class="notes">
+<aside class="notes" data-markdown>
 Allison
- originally because PDX was using Angular and Hub was using Ember
+* work in node and modern browsers with small set of polyfills
+* keeping the library as small as possible for best loadtime 
+* framework agnostic - so that you can use rest-js with React, Angular, Vue, vanilla JS
+* keep the rough edges away from your application code; handle edge cases and such from the rest api so you don't have to
+* align with the rest of the JS ecosystem - whatever your tooling, your bundler, frameworks - without having to use additional plugins or config
+
 </aside>
 
 ---
@@ -286,8 +313,11 @@ Allison
 - work [in progress](https://developers.arcgis.com/rest/)
 - scratching our own itch
 
-<aside class="notes">
+<aside class="notes" data-markdown>
 Allison
+* not an official product
+* started as a way to standardize functionality and utilities that different Esri teams had created 
+* that's why it was decided to open source it - if Esri teams are getting and adding so much value, certainly users and partners can too
 </aside>
 
 ---
@@ -299,10 +329,11 @@ Allison
 - _kind of_ analogous to ArcGIS API for Python
 - **much different** than the ArcGIS API for JavaScript
 
-<aside class="notes">
+<aside class="notes" data-markdown>
 Allison
-  thin wrapper, web centric
-  pairs well with other open source libraries
+  * kind of similar to the Python API in functionality but lacks a notebooks environment like Jupiter notebooks where you can save and rerun your scripts
+
+  * it's all about transactions with the data from the Rest API - no mapping, display capabilities, data analysis
 </aside>
 
 ---
@@ -315,8 +346,13 @@ Allison
 - [ArcGIS Hub](https://hub.arcgis.com)
 - customers!
 
-<aside class="notes">
+<aside class="notes" data-markdown>
 Allison
+* rest-js has been around over two years now. 
+* Began as a collaboration between Hub and the Developer Experience team 
+* Hub was using Ember and experimented with open sourcing some of the wrappers they'd created for working with the Rest API and dealing with things like users, items - they found that their solution was a little too specific - difficult for users to grab and go
+* Dev experience team was using Angular and a lot of the functionality we had written mirrored that of the Hub team's - but specific to Angular applications and their conventions. 
+* So...how to create a solution that eliminated that duplication of work, so that these helpers could be written once and work everywhere
 </aside>
 
 ---
@@ -339,8 +375,11 @@ Allison
 - Customers
 - You?
 
-<aside class="notes">
+<aside class="notes" data-markdown>
 Allison
+* Over the last couple years, we've seen the floodgates open not only with customer implementations but other teams at Esri
+
+* Handoff to Noah
 </aside>
 
 ---
@@ -624,14 +663,30 @@ Noah
 
 ## Demo
 
-### [OAuth in Browser]()
+### [OAuth in Browser](https://github.com/Esri/arcgis-rest-js/tree/master/demos/oauth2-browser)
 
-- Auth package
-- uses rest-js via CDN
+- [Auth package](https://esri.github.io/arcgis-rest-js/api/auth/UserSession/)
+- [rest-js via CDN](https://esri.github.io/arcgis-rest-js/guides/from-a-cdn/)
 
-<aside class="notes">
+<aside class="notes" data-markdown>
 Allison
-@TODO Look at existing demo on GitHub (OAuth demo), make sure it covers what we want to cover
+* Vanilla JS implementation 
+
+* Demo follows the app login pattern, in which an app uses your client id to obtain credentials
+
+* Demonstrate inline Sign In 
+
+* What's going on? 
+
+* Use arcgis for developers to create an app item and set a redirect url
+
+* in app code, we set our client id
+
+* Index.html - CDN script tags
+
+* Index.html - line 178 our click handler. Note that when using the CDN we preface our method calls with `arcgisREST`
+
+* Authenticate.html just calls a function to complete the OAuth process. The session info is saved in local storage
 </aside>
 
 ---
@@ -642,10 +697,29 @@ Allison
 
 ### [React Component](https://github.com/oppoudel/react-geocoder)
 
-<aside class="notes">
+- [Geocoding package](https://esri.github.io/arcgis-rest-js/api/geocoding/)
+- [Downshift](https://github.com/downshift-js/downshift)
+
+<aside class="notes" data-markdown>
 Allison
-@TODO create updated React demo with v2.0; TypeScript
-  geocoding
+
+* This is a React geocoding component created by a user - link to his repo is in the slides
+
+* Running this locally to show the upgrade to rest-js 2.9
+
+* This is built with React and Downshift, which is a project to create low-level accesible dropdowns, menus and other components in React
+
+* Demonstrate component in browser
+
+* In Geocoder.js, 
+  * If the menu is open, Geocode component calls the `suggest` method from the geocoding package
+
+  * debounce - prevents an API call with every key stroke and improves performance
+
+  * handleStateChange is passed to the Downshift instance so that onStateChange, the function is called, which in turn calls the geocode method
+
+  * MagicKey from the suggestions is what's passed to the geocode call (point that out in the rest-js docs)
+
 </aside>
 
 ---
@@ -678,27 +752,14 @@ Noah
 
 ---
 
-
-
-<!-- .slide: data-background="../../template/img/2020/devsummit/bg-3.png" -->
-
-### What's next? 
-
-
-<aside class="notes">
-Allison
-@TODO UPDATE FOR 2020
-</aside>
-
----
-
 <!-- .slide: data-background="../../template/img/2020/devsummit/bg-3.png" -->
 
 ### Resources 📚
 
+- [Link to slides]()
 - [GitHub repo](https://github.com/Esri/arcgis-rest-js)
 - [Docs site](https://esri.github.io/)
-- [rest-js demo at Observables](https://beta.observablehq.com/@jgravois/introduction-to-esri-arcgis-rest-js)
+- [Demo at Observables](https://beta.observablehq.com/@jgravois/introduction-to-esri-arcgis-rest-js)
 <p>&nbsp;</p> 
 
 ### More Demos 💻
@@ -707,8 +768,14 @@ Allison
 - [Web Components with Stencil](https://github.com/esridc/hub-components)
 - [Lamda Functions](https://medium.com/@adamjpfister/know-your-apis-6dc6ea3d084c)
 
-<aside class="notes">
+<aside class="notes" data-markdown>
 Allison
+
+* There are lots of great demos in the rest-js repo and beyound, we've pointed out a few here
+
+* Reiterate that rest-js is open source and we welcome PRs, feedback, information about how you're implementing this in your projects
+
+* Thank you!
 </aside>
 
 ---
@@ -716,7 +783,3 @@ Allison
 <!-- .slide: data-background="../../template/img/2020/devsummit/bg-3.png" -->
 
 <img src="../../template/img/esri-science-logo-white.png" class="plain" style="background: none;" />
-
----
-
-<!-- .slide: data-background="../../template/img/2020/devsummit/bg-rating.png" -->
