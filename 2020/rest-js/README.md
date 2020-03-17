@@ -387,6 +387,12 @@ Allison
 
 <!-- .slide: data-background="../../template/img/2020/devsummit/bg-2.png" -->
 
+## Noah Mulfinger (2)
+
+---
+
+<!-- .slide: data-background="../../template/img/2020/devsummit/bg-2.png" -->
+
 ## packages 📦!
 
 - `request` 2.8 kB
@@ -701,6 +707,12 @@ Noah
 
 ---
 
+<!-- .slide: data-background="../../template/img/2020/devsummit/bg-2.png" -->
+
+## Allison Davis (3)
+
+---
+
 <!-- .slide: data-background="../../template/img/2020/devsummit/bg-4.png" -->
 
 ## Demo
@@ -767,6 +779,12 @@ Allison
 
 ---
 
+<!-- .slide: data-background="../../template/img/2020/devsummit/bg-2.png" -->
+
+## Noah Mulfinger (4)
+
+---
+
 <!-- .slide: data-background="../../template/img/2020/devsummit/bg-4.png" -->
 
 ## Demo
@@ -793,6 +811,12 @@ demo (and API functionality) came from a user
 admit that we should be hosting live demos but for now you have to run them yourself.
 
 </aside>
+
+---
+
+<!-- .slide: data-background="../../template/img/2020/devsummit/bg-2.png" -->
+
+## Allison Davis (5)
 
 ---
 
