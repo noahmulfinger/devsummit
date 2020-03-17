@@ -789,11 +789,10 @@ Allison
 
 ## Demo
 
-### [JS API Integration](https://angular-js-api-integration-demo.stackblitz.io/)
+### [JS API Integration with Angular](https://angular-js-api-integration-demo.stackblitz.io/)
 
 <aside class="notes" data-markdown>
 Noah
-@TODO create JS API integration demo
 </aside>
 
 ---
@@ -805,11 +804,7 @@ Noah
 ### [Node.js](https://github.com/Esri/arcgis-rest-js/tree/master/demos/node-cli-item-management/)
 
 <aside class="notes">
-  Noah
-
-demo (and API functionality) came from a user
-admit that we should be hosting live demos but for now you have to run them yourself.
-
+Noah
 </aside>
 
 ---
