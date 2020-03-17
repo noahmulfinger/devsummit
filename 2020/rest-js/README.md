@@ -758,9 +758,10 @@ Allison
 
   * debounce - prevents an API call with every key stroke and improves performance
 
-  * handleStateChange is passed to the Downshift instance so that onStateChange, the function is called, which in turn calls the geocode method
+  * Suggest provides magicKey values in addition to text result. The key links a suggestion to an address or place. This can be passed to the geocode call to improve search time. Note that magic Keys are not permanent across versions of the World Geocoding search and thus shouldn't be stored by a client application, but instead only used as a parameter for the geocode call.  
 
-  * MagicKey from the suggestions is what's passed to the geocode call (point that out in the rest-js docs)
+  * handleStateChange is passed to the Downshift instance so that onStateChange, the function is called, which in turn calls the geocode method with the magicKey passed as a parameter
+
 
 </aside>
 
