@@ -22,17 +22,6 @@
 
 <aside class="notes" data-markdown>
 
-- Introduction/What is ArcGIS REST JS? Why? (Allison) 8 min
-- Who is using it? For what? (Allison) 2 min
-- Packages (Noah) 2 min
-- Common Patterns (Noah) 5 min
-- What's new in 2020? (Noah) 5 min
-- Auth/CDN demo (Allison) 5 min
-- React demo (Allison) 5 min
-- JS API integration demo (Noah) 5 min
-- node cli demo (Noah) 5 min
-- Resources and Wrap-up 3 min (Allison)
-- Questions 10 min
   </aside>
 
 ---
@@ -46,7 +35,6 @@ Code 🎛 [github.com/Esri/arcgis-rest-js](https://github.com/Esri/arcgis-rest-j
 Doc 📚 [esri.github.io/arcgis-rest-js](https://esri.github.io/arcgis-rest-js)
 
 <aside class="notes" data-markdown>
-(Allison)
   * Both the rest-js codebase and docs are open source
   *  API reference is generated from comments within the code using TypeDoc
   * Guides and demos
@@ -64,7 +52,6 @@ to ArcGIS Online and Enterprise
 from modern browsers and Node.js.
 
 <aside class="notes" data-markdown>
-(Allison)
 We try to handle as many common use cases and as many idiosyncracies of the REST API as possible
 </aside>
 
@@ -94,7 +81,6 @@ xhr.send(null);
 ```
 
 <aside class="notes" data-markdown>
-(Allison)
   * url; tack on f=json so that we get our json format
   * we wait for readyStateChange, and then if it's Done, we have response text 
   * and then we have to figure out how we want to handle errors.
@@ -134,8 +120,6 @@ fetch(url, {
 ```
 
 <aside class="notes" data-markdown>
-  Allison
-
 - url; set options including method and form encoded header, encode the f=json parameters
 - we get a promise back and then can extract the json from the response object
 - there's some error handing
@@ -157,7 +141,6 @@ fetch(url, {
 - Refreshing authentication when necessary?
 
 <aside class="notes">
-Allison
 
 </aside>
 
@@ -168,7 +151,6 @@ Allison
 <p style="font-size: 400%;">💥</p>
 
 <aside class="notes" data-markdown>
-Allison
 Rest-js tries to handle as much of this as possible so your head doesn't explode
 </aside>
 
@@ -193,7 +175,7 @@ request(url)
 ```
 
 <aside class="notes" data-markdown>
-(Allison)
+
   does more in fewer lines of code 
 </aside>
 
@@ -213,7 +195,6 @@ request(url)
 - ~~clientside analysis~~
 
 <aside class="notes" data-markdown>
-(Allison)
 * handles headers including requesting images or files 
 * try to separate out as many error types as possible
 * auth support including tokens for federated servers, refreshing when necessary
@@ -247,7 +228,6 @@ request(url, {
 ```
 
 <aside class="notes" data-markdown>
-Allison
   * httpMethod defaults to POST
   * IRequestOptions give you more control over the request
   * authentication helps you generate tokens when you can't make an anonymous request
@@ -277,7 +257,6 @@ geocode({
 ```
 
 <aside class="notes" data-markdown>
-  Allison
   * Under the hood, geocoding just calls request
   * But with nicer syntax 
 </aside>
@@ -295,7 +274,6 @@ geocode({
 - align with JS ecosystem
 
 <aside class="notes" data-markdown>
-Allison
 * work in node and modern browsers with small set of polyfills
 * keeping the library as small as possible for best loadtime 
 * framework agnostic - so that you can use rest-js with React, Angular, Vue, vanilla JS
@@ -315,7 +293,6 @@ Allison
 - scratching our own itch
 
 <aside class="notes" data-markdown>
-Allison
 * not an official product
 * started as a way to standardize functionality and utilities that different Esri teams had created 
 * that's why it was decided to open source it - if Esri teams are getting and adding so much value, certainly users and partners can too
@@ -331,7 +308,7 @@ Allison
 - **much different** than the ArcGIS API for JavaScript
 
 <aside class="notes" data-markdown>
-Allison
+
   * kind of similar to the Python API in functionality but lacks a notebooks environment like Jupiter notebooks where you can save and rerun your scripts
 
 - it's all about transactions with the data from the Rest API - no mapping, display capabilities, data analysis
@@ -348,7 +325,7 @@ Allison
 - customers!
 
 <aside class="notes" data-markdown>
-Allison
+
 * rest-js has been around over two years now. 
 * Began as a collaboration between Hub and the Developer Experience team 
 * Hub was using Ember and experimented with open sourcing some of the wrappers they'd created for working with the Rest API and dealing with things like users, items - they found that their solution was a little too specific - difficult for users to grab and go
@@ -377,17 +354,9 @@ Allison
 - You?
 
 <aside class="notes" data-markdown>
-Allison
 * Over the last couple years, we've seen the floodgates open not only with customer implementations but other teams at Esri
 
-- Handoff to Noah
   </aside>
-
----
-
-<!-- .slide: data-background="../../template/img/2020/devsummit/bg-2.png" -->
-
-## Noah Mulfinger (2)
 
 ---
 
@@ -404,7 +373,6 @@ Allison
 - `routing` 642 B
 
 <aside class="notes" data-markdown>
-Noah
 - This is the set of packages we have so far.
 - We have the base request package that the other packages build on, auth contains different methods for handling authentication, portal is for interacting with users, groups, and items in ArcGIS Online or your enterprise portal, feature layer is for querying and editing data in a feature service layer, service-admin is for managing metadata about a service.
 - Right now it only contains functionality for dealing with feature services, but its meant for things like creating a new service and adding layers or other properties to a service.
@@ -440,7 +408,6 @@ searchItems({
 you can pass in it in directly.
 
 <aside class="notes" data-markdown>
-Noah
 - For functions that only require one piece of information, they can take in that info directly as a single argument or as part of a larger object.
 - In this case if you wanted to just do a default query of ArcGIS Online for items containing the string water, you could do the first query.
 - You could alternatively pass in an object containing a query field and some other options
@@ -478,7 +445,6 @@ Noah
 only an object can be passed in, [_extends_](https://esri.github.io/arcgis-rest-js/api/feature-layer/deleteFeatures/) `IRequestOptions`
 
 <aside class="notes" data-markdown>
-Noah
 - However, if more than one piece of information is required, you would always pass in an object with the required options
 - For all functions, the object extends the default request options provided in the base request library, so you could pass in authentication, headers, etc to deleteFeatures as well.
 - (OPEN delete features doc)
@@ -507,7 +473,6 @@ setItemAccess({
 [`ISetItemAccessOptions`](https://esri.github.io/arcgis-rest-js/api/portal/setItemAccess/)
 
 <aside class="notes" data-markdown>
-Noah
 - The functions in the library also try to reduce the overhead of constructing a url and require as little as possible. 
 - For example, in the setItemAccess function, we only need the id of the item, the access value  or who it should be shared with, and some authentication to know if the current user is allowed to update the specified item
 
@@ -523,7 +488,6 @@ Simplified developer experience, even when the underlying logic is [complicated]
 - we figure out _which_ url to call (based on role)
 
 <aside class="notes" data-markdown>
-Noah
 - Overall the focus is on simplifying the developer experience  even when the logic can get complicated.
 - (OPEN group sharing js)
 - Here’s one example, probably the most complex functionality under the hood that the library provides.
@@ -554,7 +518,6 @@ const enterpriseAuth = new UserSession({
 ```
 
 <aside class="notes" data-markdown>
-Noah
 - Another important concern when working with the REST API is authentication.
 - The most common method for this is through a UserSession from the auth package.
 - Using either ArcGIS Online or an enterprise portal, you can construct a user session with standard username and password credentials
@@ -583,7 +546,6 @@ request(url, { authentication }).then(response => {
 and whether or not a server is trusted (federated)
 
 <aside class="notes" data-markdown>
-Noah
 - This UserSession serves as an authentication object that you’ve seen in previous code samples. This authentication object is passed in to the request.
 - The first time a request is made with it, it will handle getting a token from the server, checking whether the server is trusted or federated.
 - On subsequent requests using the same authentication, it will reuse the same token and handle expiration by getting a fresh token from the server.
@@ -602,7 +564,6 @@ Noah
 (plus 20 additional releases 🚀)
 
 <aside class="notes" data-markdown>
-Noah
 - Since the previous version of this talk in DevSummit 2019, the library has been actively developed.
 - We’ve released a 2.0 version and there have been 20+ additional releases beyond that.
 - So its been pretty active.
@@ -625,7 +586,6 @@ Noah
 - Package and type reorganization
 
 <aside class="notes" data-markdown>
-Noah
 - We added a new SearchQueryBuilder class that allows you to easily compose a search query without needing to do a bunch of manual string management. 
 - We also added some improved paging functionality, we added a nextPage function returned from any search query that you can call to easily get the next page of results without having to construct a new request.
 - We also added two helper functions, setDefaultRequestOptions and withOptions. setDefaultRequestOptions allows you to set custom options for all requests.
@@ -663,7 +623,6 @@ const q = new SearchQueryBuilder()
 ```
 
 <aside class="notes" data-markdown>
-Noah
 - So this is an example of creating a search query using the new builder class. 
 - In standard queries, you would need to construct the query as a long string, but in version 2.0, you can build up a query using helper functions. 
 - This is especially useful for complex queries or ones that require a lot of conditionalization.
@@ -689,7 +648,6 @@ npm install @esri/arcgis-rest-portal
 ```
 
 <aside class="notes" data-markdown>
-Noah
 - One example of the package reorganization is grouping up the separate items, users, groups, and sharing packages into a single portal package.
 - These packages all shared a lot of functionality and were already very small, so grouping them up didn’t increase the size too much
 </aside>
@@ -714,11 +672,9 @@ reverseGeocode({ x: 34, y: -118 } as IPoint);
 ```
 
 <aside class="notes" data-markdown>
-Noah
 - For those using typescript, one improvement is including types in the same packages where they are used.
 - Previously you would need to install a separate types package for any a lot of typescript types.
 - There are additional changes in version 2, and you can check out the release notes for the full list of what’s changed.
-- HANDOVER TO ALLISON
 </aside>
 
 ---
@@ -726,12 +682,6 @@ Noah
 <!-- .slide: data-background="../../template/img/2020/devsummit/bg-2.png" -->
 
 Check out the [release notes](https://esri.github.io/arcgis-rest-js/guides/whats-new-v2-0/) for the full list
-
----
-
-<!-- .slide: data-background="../../template/img/2020/devsummit/bg-2.png" -->
-
-## Allison Davis (3)
 
 ---
 
@@ -745,7 +695,6 @@ Check out the [release notes](https://esri.github.io/arcgis-rest-js/guides/whats
 - [rest-js via CDN](https://esri.github.io/arcgis-rest-js/guides/from-a-cdn/)
 
 <aside class="notes" data-markdown>
-Allison
 * Vanilla JS implementation
 
 - Demo follows the app login pattern, in which an app uses your client id to obtain credentials
@@ -777,7 +726,6 @@ Allison
 - [Downshift](https://github.com/downshift-js/downshift)
 
 <aside class="notes" data-markdown>
-Allison
 
 - This is a React geocoding component created by a user - link to his repo is in the slides
 
@@ -801,12 +749,6 @@ Allison
 
 ---
 
-<!-- .slide: data-background="../../template/img/2020/devsummit/bg-2.png" -->
-
-## Noah Mulfinger (4)
-
----
-
 <!-- .slide: data-background="../../template/img/2020/devsummit/bg-4.png" -->
 
 ## Demo
@@ -814,7 +756,6 @@ Allison
 ### [JS API Integration with Angular](https://angular-js-api-integration-demo.stackblitz.io/)
 
 <aside class="notes" data-markdown>
-Noah
 - For the first demo, I'm going to show an example of using both the JS API and rest JS together in an Angular application
 - Sign in. Mention oauth2 sign in setup 
 - Shows list of feature services owned by the user
@@ -853,7 +794,6 @@ Noah
 ### [Node.js](https://github.com/Esri/arcgis-rest-js/tree/master/demos/node-cli-item-management/)
 
 <aside class="notes" data-markdown>
-Noah
 - So first we import the rest js packages we need since the packages are exported with both browser and node versions.
 - At a higher level, we prompt the user for authentication, do a search for items based on their input, and then optionally delete each item
 - In the authentication step, we prompt for the users credentials using the prompts package, which makes it easy to set up command line prompts through node.
@@ -863,12 +803,6 @@ Noah
 - Once the query is constructed, we make a call to searchItem passing in the authentication, query, and the number of items requested
 - In the deleteItems step, we iterate through all of the items using an async iterator. Using an async iterator because its a set of promises that need to happen in sequence
 </aside>
-
----
-
-<!-- .slide: data-background="../../template/img/2020/devsummit/bg-2.png" -->
-
-## Allison Davis (5)
 
 ---
 
@@ -889,7 +823,6 @@ Noah
 - [Lamda Functions](https://medium.com/@adamjpfister/know-your-apis-6dc6ea3d084c)
 
 <aside class="notes" data-markdown>
-Allison
 
 - There are lots of great demos in the rest-js repo and beyound, we've pointed out a few here
 
