@@ -176,7 +176,8 @@ request(url)
 
 <aside class="notes" data-markdown>
 
-  does more in fewer lines of code 
+does more in fewer lines of code
+
 </aside>
 
 ---
@@ -309,9 +310,9 @@ geocode({
 
 <aside class="notes" data-markdown>
 
-  * kind of similar to the Python API in functionality but lacks a notebooks environment like Jupiter notebooks where you can save and rerun your scripts
+- kind of similar to the Python API in functionality but lacks a notebooks environment like Jupiter notebooks where you can save and rerun your scripts
 
-- it's all about transactions with the data from the Rest API - no mapping, display capabilities, data analysis
+* it's all about transactions with the data from the Rest API - no mapping, display capabilities, data analysis
   </aside>
 
 ---
@@ -326,12 +327,12 @@ geocode({
 
 <aside class="notes" data-markdown>
 
-* rest-js has been around over two years now. 
-* Began as a collaboration between Hub and the Developer Experience team 
-* Hub was using Ember and experimented with open sourcing some of the wrappers they'd created for working with the Rest API and dealing with things like users, items - they found that their solution was a little too specific - difficult for users to grab and go
-* Dev experience team was using Angular and a lot of the functionality we had written mirrored that of the Hub team's - but specific to Angular applications and their conventions. 
-* So...how to create a solution that eliminated that duplication of work, so that these helpers could be written once and work everywhere
-</aside>
+- rest-js has been around over two years now.
+- Began as a collaboration between Hub and the Developer Experience team
+- Hub was using Ember and experimented with open sourcing some of the wrappers they'd created for working with the Rest API and dealing with things like users, items - they found that their solution was a little too specific - difficult for users to grab and go
+- Dev experience team was using Angular and a lot of the functionality we had written mirrored that of the Hub team's - but specific to Angular applications and their conventions.
+- So...how to create a solution that eliminated that duplication of work, so that these helpers could be written once and work everywhere
+  </aside>
 
 ---
 
@@ -355,8 +356,7 @@ geocode({
 
 <aside class="notes" data-markdown>
 * Over the last couple years, we've seen the floodgates open not only with customer implementations but other teams at Esri
-
-  </aside>
+</aside>
 
 ---
 
@@ -377,7 +377,7 @@ geocode({
 - We have the base request package that the other packages build on, auth contains different methods for handling authentication, portal is for interacting with users, groups, and items in ArcGIS Online or your enterprise portal, feature layer is for querying and editing data in a feature service layer, service-admin is for managing metadata about a service.
 - Right now it only contains functionality for dealing with feature services, but its meant for things like creating a new service and adding layers or other properties to a service.
 - Geocoding and routing are self-explanatory, they provide wrapper functions for using the geocoding and routing services.
-- As you can see all these packages are very light-weight. They are also set up to be tree-shakeable so that if you are using a bundler like web pack you can only bundle the functions you actually use. 
+- As you can see all these packages are very light-weight. They are also set up to be tree-shakeable so that if you are using a bundler like web pack you can only bundle the functions you actually use.
 
 </aside>
 
@@ -482,7 +482,7 @@ setItemAccess({
 
 <!-- .slide: data-background="../../template/img/2020/devsummit/bg-2.png" -->
 
-Simplified developer experience, even when the underlying logic is [complicated](https://github.com/Esri/arcgis-rest-js/blob/master/packages/arcgis-rest-portal/src/sharing/group-sharing.ts#L76-L173)
+Simplified developer experience, even when the underlying logic is [complicated](https://github.com/Esri/arcgis-rest-js/blob/869f466c47b2e80768018b20c89c6279212767aa/packages/arcgis-rest-portal/src/sharing/group-sharing.ts#L76-L173)
 
 - we ensure the response is _deterministic_
 - we figure out _which_ url to call (based on role)
@@ -579,7 +579,7 @@ and whether or not a server is trusted (federated)
 
 - [SearchQueryBuilder](https://esri.github.io/arcgis-rest-js/api/portal/SearchQueryBuilder/)
 
-- Improved [paging](https://esri.github.io/arcgis-rest-js/api/portal/searchItems/#nextPage)
+- Improved [paging](https://esri.github.io/arcgis-rest-js/api/portal/searchItems#nextPage)
 
 - `setDefaultRequestOptions()` and `withOptions()`
 
@@ -812,13 +812,13 @@ Check out the [release notes](https://esri.github.io/arcgis-rest-js/guides/whats
 
 - [Link to slides](https://bit.ly/3aLDzaz)
 - [GitHub repo](https://github.com/Esri/arcgis-rest-js)
-- [Docs site](https://esri.github.io/)
+- [Docs site](https://esri.github.io/arcgis-rest-js/)
 - [Demo at Observables](https://beta.observablehq.com/@jgravois/introduction-to-esri-arcgis-rest-js)
   <p>&nbsp;</p>
 
 ### More Demos 💻
 
-- [Sapper](https://github.com/Esri/arcgis-rest-js/tree/master/demos/feature-collection-manager-sapper)
+- [Sapper](https://github.com/Esri/arcgis-rest-js/tree/master/demos/webmap-checker-sapper)
 - [Web Components with Stencil](https://github.com/esridc/hub-components)
 - [Lamda Functions](https://medium.com/@adamjpfister/know-your-apis-6dc6ea3d084c)
 
