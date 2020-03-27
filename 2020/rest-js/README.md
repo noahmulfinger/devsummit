@@ -344,8 +344,6 @@ geocode({
 - ArcGIS for Developers
 - Storymaps
 - Web AppBuilder (next generation)
-- ArcGIS Urban
-- Professional Services
 - ArcGIS Solutions
 - ArcGIS Enterprise
 - ArcGIS Analytics for IoT
