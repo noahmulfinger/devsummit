@@ -20,9 +20,21 @@
 1. 💯- Common Patterns
 1. 🤹‍- Demos/code (to learn how it works)
 
-<aside class="notes" data-markdown>
+<aside class="notes">
 
-  </aside>
+Introduction/What is ArcGIS REST JS? Why? (Allison) 8 min
+Who is using it? For what? (Allison) 2 min
+Packages (Noah) 2 min
+Common Patterns (Noah) 5 min
+What's new in 2020? (Noah) 5 min
+Auth/CDN demo (Allison) 5 min
+React demo (Allison) 5 min
+JS API integration demo (Noah) 5 min
+node cli demo (Noah) 5 min
+What's next, resources and Wrap-up 3 min (Allison)
+Questions 10 min
+
+</aside>
 
 ---
 
