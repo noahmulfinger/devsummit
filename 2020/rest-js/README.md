@@ -480,7 +480,7 @@ setItemAccess({
 
 <!-- .slide: data-background="../../template/img/2020/devsummit/bg-2.png" -->
 
-Simplified developer experience, even when the underlying logic is [complicated](https://github.com/Esri/arcgis-rest-js/blob/869f466c47b2e80768018b20c89c6279212767aa/packages/arcgis-rest-portal/src/sharing/group-sharing.ts#L76-L173)
+Simplified developer experience, even when the underlying logic is [complicated](https://github.com/Esri/arcgis-rest-js/blob/869f466c47b2e80768018b20c89c6279212767aa/packages/arcgis-rest-portal/src/sharing/group-sharing.ts)
 
 - we ensure the response is _deterministic_
 - we figure out _which_ url to call (based on role)
@@ -577,7 +577,7 @@ and whether or not a server is trusted (federated)
 
 - [SearchQueryBuilder](https://esri.github.io/arcgis-rest-js/api/portal/SearchQueryBuilder/)
 
-- Improved [paging](https://esri.github.io/arcgis-rest-js/api/portal/searchItems#nextPage)
+- Improved [paging](https://esri.github.io/arcgis-rest-js/api/portal/searchItems)
 
 - `setDefaultRequestOptions()` and `withOptions()`
 
