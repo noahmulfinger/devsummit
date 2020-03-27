@@ -456,7 +456,7 @@ only an object can be passed in, [_extends_](https://esri.github.io/arcgis-rest-
 
 <!-- .slide: data-background="../../template/img/2020/devsummit/bg-2.png" -->
 
-### update who can access an [item](http://edn.maps.arcgis.com/home/item.html?id=d9af3e31a562431988666e86bfc8a0d5)
+### update who can access an item
 
 ```js
 import { setItemAccess } from "@esri/arcgis-rest-sharing";
@@ -751,7 +751,7 @@ Check out the [release notes](https://esri.github.io/arcgis-rest-js/guides/whats
 
 ## Demo
 
-### [JS API Integration with Angular](https://angular-js-api-integration-demo.stackblitz.io/)
+### [JS API Integration with Angular](https://github.com/noahmulfinger/angular-js-api-integration-demo)
 
 <aside class="notes" data-markdown>
 - For the first demo, I'm going to show an example of using both the JS API and rest JS together in an Angular application
